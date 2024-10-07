@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<h2>Study Details</h2>
+<table class="table-responsive">
+    <thead class="table-head">
+        <tr class="table-row">
+            <th>Select</th>
+            <th>Study Name</th>
+            <th>Study Phase</th>
+            <th>Sponsor Name</th>
+            <th>Study Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody class="table-body">
+        {% for study in studies %}
+        <tr>
+            <td><a href="{% url 'selected_view' study.id %}"><button class="view-btn edit-btn">View</button></a></td>
+            <td>{{ study.study_name }}</td>
+            <td>{{ study.study_phase }}</td>
+            <td>{{ study.sponsor_name }}</td>
+            <td>{{ study.study_description }}</td>
+            <td>
+                <a href="{% url 'edit_study' study.id %}" class="edit"><button class="edit-btn ">Edit</button></a> |
+                <a href="{% url 'delete_study' study.id %}" class="remove"><button class="remove-btn ">Delete</button></a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No studies found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'add_study' %}" class="new"><button class="new-btn ">Add New Study</button></a>
+
+{% endblock %}

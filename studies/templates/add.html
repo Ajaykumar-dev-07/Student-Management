@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+   <div class="add">
+    <h2>Add Study</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="add-btn">
+            <button type="submit">Add Study</button>
+            <button ><a href="{% url 'view_all_studies' %}" style="text-decoration:none;color: aliceblue; ">Cancel</a></button>
+        </div>
+       
+    </form>
+   </div>
+{% endblock %}
